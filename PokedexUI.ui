@@ -29,7 +29,7 @@
    <string>Pokedex</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="find_entry_pushButton">
     <property name="geometry">
      <rect>
       <x>120</x>
@@ -103,7 +103,7 @@
      <string>Pokedex ID</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="sprite_label">
     <property name="geometry">
      <rect>
       <x>340</x>
