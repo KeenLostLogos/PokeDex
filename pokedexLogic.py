@@ -25,20 +25,6 @@ def download_file(url, directory, filename=""):
     return True
 
 
-def save_to_json(data):
-    with open('Moves.json', 'w') as file:
-        json.dump(data, file)
-
-
-def read_from_json():
-    if os.path.exists(os.path.dirname(__file__) + r"\Moves.json"):
-        with open('Moves.json', 'r') as file:
-            data = json.load(file)
-        return data
-    else:
-        return {}
-
-
 def download_cry(url, pokemon):
     directory = os.path.dirname(__file__) + r"\cries"
     download_file(url, directory, pokemon)
@@ -58,8 +44,8 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.__pokemonName = ""
         self.__pokedexEntry = {}
         self.__methods = {}
-        self.__allMoves = read_from_json()
-        self.__game = "emerald"
+        self.__allMoves = {}
+        self.__game = self.comboBox.currentText()
         self.find_entry_pushButton.clicked.connect(self.get_pokedex_entry)
         self.male_pushButton.clicked.connect(lambda: self.update_sprite())
         self.female_pushButton.clicked.connect(lambda: self.update_sprite("F"))
@@ -73,9 +59,19 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.pokemon_move_treeWidget.setColumnWidth(5, 85)
         self.pokemon_move_treeWidget.setColumnWidth(6, 50)
 
-    def closeEvent(self, event):
-        super(QMainWindow, self).closeEvent(event)
-        save_to_json(self.__allMoves)
+    def save_to_json(self):
+        if not os.path.exists(os.path.dirname(__file__) + "\\Moves"):
+            os.makedirs(os.path.dirname(__file__) + r"\Moves")
+        with open(r"Moves" + "\\" + f"{self.__game}.json", "w+") as file:
+            json.dump(self.__allMoves, file)
+
+    def read_from_json(self):
+        if os.path.exists(os.path.dirname(__file__) + r"\Moves" + "\\" + f"{self.__game}.json"):
+            with open(r"Moves" + "\\" + f"{self.__game}.json", 'r') as file:
+                data = json.load(file)
+            self.__allMoves = data
+        else:
+            self.__allMoves = {}
 
     def download_sprites(self):
         directory = os.path.dirname(os.path.abspath(__file__)) + r"\sprites"
@@ -94,47 +90,47 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.sprite_label.setPixmap(pixmap)
 
     def get_moves(self):
-
+        self.__game = self.comboBox.currentText()
         self.pokemon_move_treeWidget.clear()
         self.__methods = {}
+        self.read_from_json()
         already_displayed = []
-
         for move in self.__pokedexEntry["moves"]:
             for version in move["version_group_details"]:
 
-                if move in already_displayed:
+                name = kebab_to_start_case(move["move"]["name"])
+                if name in already_displayed:
                     break
 
-                game_version = version["version_group"]["name"]
+                game_version = kebab_to_start_case(version["version_group"]["name"])
                 if game_version != self.__game:
                     continue
 
-                name = kebab_to_start_case(move["move"]["name"])
-                move_version = f"{game_version}-{name}"
-                new_move = {"name": name}
-
-                if move_version in self.__allMoves.keys():
-                    self.add_tree_item(move_version)
-                    already_displayed.append(move)
+                if name in self.__allMoves.keys():
+                    self.add_tree_item(name)
+                    already_displayed.append(name)
                 else:
-                    new_move["move_learn_method"] = kebab_to_start_case(version["move_learn_method"]["name"])
-                    new_move["learned_at"] = str(version["level_learned_at"])
                     response = requests.get(move["move"]["url"])
                     if response.status_code != 200:
                         break
                     details = response.json()
-                    new_move["accuracy"] = str(details["accuracy"])
-                    new_move["power"] = str(details["power"])
-                    new_move["pp"] = str(details["pp"])
-                    new_move["priority"] = str(details["priority"])
-                    new_move["type"] = details["type"]["name"]
-                    new_move["damage_class"] = details["damage_class"]["name"]
-                    new_move["effect"] = details["effect_entries"][0]["short_effect"]
-                    self.__allMoves[move_version] = new_move
-                    self.add_tree_item(move_version)
+                    new_move = {"name": name,
+                                "move_learn_method": kebab_to_start_case(version["move_learn_method"]["name"]),
+                                "learned_at": str(version["level_learned_at"]),
+                                "accuracy": str(details["accuracy"]),
+                                "power": str(details["power"]),
+                                "pp": str(details["pp"]),
+                                "priority": str(details["priority"]),
+                                "type": details["type"]["name"],
+                                "damage_class": details["damage_class"]["name"],
+                                "effect": details["effect_entries"][0]["short_effect"] if details["effect_entries"] else ""}
+                    self.__allMoves[name] = new_move
+                    already_displayed.append(name)
+                    self.add_tree_item(name)
+        self.save_to_json()
 
-    def add_tree_item(self, move_version):
-        move = self.__allMoves[move_version]
+    def add_tree_item(self, name):
+        move = self.__allMoves[name]
         method = move["move_learn_method"]
         if method not in self.__methods:
             self.__methods[method] = QTreeWidgetItem(self.pokemon_move_treeWidget)
