@@ -9,17 +9,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>583</width>
-    <height>770</height>
+    <width>1123</width>
+    <height>909</height>
    </rect>
   </property>
   <property name="minimumSize">
-   <size>
-    <width>583</width>
-    <height>770</height>
-   </size>
-  </property>
-  <property name="maximumSize">
    <size>
     <width>583</width>
     <height>770</height>
@@ -32,7 +26,7 @@
    <widget class="QPushButton" name="find_entry_pushButton">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>100</x>
       <y>170</y>
       <width>81</width>
       <height>20</height>
@@ -50,7 +44,7 @@
    <widget class="QLineEdit" name="pokedex_id_entry">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>90</y>
       <width>151</width>
       <height>20</height>
@@ -60,7 +54,7 @@
    <widget class="QLineEdit" name="pokemon_name_entry">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>50</y>
       <width>151</width>
       <height>20</height>
@@ -70,7 +64,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>50</y>
       <width>91</width>
       <height>16</height>
@@ -88,7 +82,7 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>90</y>
       <width>91</width>
       <height>16</height>
@@ -125,7 +119,7 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>280</y>
       <width>101</width>
       <height>16</height>
@@ -143,8 +137,8 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>280</y>
+      <x>600</x>
+      <y>50</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -164,8 +158,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>500</y>
+      <x>570</x>
+      <y>650</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -182,8 +176,8 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>500</y>
+      <x>10</x>
+      <y>650</y>
       <width>101</width>
       <height>16</height>
      </rect>
@@ -200,9 +194,9 @@
    <widget class="QListWidget" name="listWidget_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>520</y>
-      <width>256</width>
+      <x>10</x>
+      <y>670</y>
+      <width>541</width>
       <height>192</height>
      </rect>
     </property>
@@ -210,7 +204,7 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>210</y>
       <width>91</width>
       <height>31</height>
@@ -228,7 +222,7 @@
    <widget class="QLabel" name="height_label">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>160</x>
       <y>210</y>
       <width>91</width>
       <height>31</height>
@@ -240,13 +234,13 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="weight_label">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>160</x>
       <y>240</y>
       <width>91</width>
       <height>31</height>
@@ -258,13 +252,13 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>240</y>
       <width>91</width>
       <height>31</height>
@@ -279,131 +273,64 @@
      <string>Weight</string>
     </property>
    </widget>
-   <widget class="QTreeWidget" name="treeWidget">
+   <widget class="QTreeWidget" name="pokemon_move_treeWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>10</x>
       <y>300</y>
-      <width>256</width>
-      <height>192</height>
+      <width>1101</width>
+      <height>341</height>
      </rect>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
     <column>
      <property name="text">
-      <string>Moves</string>
+      <string>Move</string>
      </property>
     </column>
-    <item>
+    <column>
      <property name="text">
-      <string>Level Up Moves</string>
+      <string>Type</string>
      </property>
-     <item>
-      <property name="text">
-       <string>Move 1</string>
-      </property>
-     </item>
-    </item>
-    <item>
+    </column>
+    <column>
      <property name="text">
-      <string>Learned Moves</string>
+      <string>Power</string>
      </property>
-     <item>
-      <property name="text">
-       <string>move 2</string>
-      </property>
-     </item>
-    </item>
-    <item>
+    </column>
+    <column>
      <property name="text">
-      <string>Egg Moves</string>
+      <string>Accuracy</string>
      </property>
-     <item>
-      <property name="text">
-       <string>move 3</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>New Item</string>
-      </property>
-     </item>
-    </item>
+    </column>
+    <column>
+     <property name="text">
+      <string>PP</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Damage Class</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Priority</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Effect</string>
+     </property>
+    </column>
    </widget>
    <widget class="QLabel" name="hp_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>310</y>
+      <x>680</x>
+      <y>80</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -414,7 +341,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -423,8 +350,8 @@
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>310</y>
+      <x>570</x>
+      <y>80</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -441,8 +368,8 @@
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>330</y>
+      <x>570</x>
+      <y>100</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -459,8 +386,8 @@
    <widget class="QLabel" name="attack_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>330</y>
+      <x>680</x>
+      <y>100</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -471,7 +398,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -480,8 +407,8 @@
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>350</y>
+      <x>570</x>
+      <y>120</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -498,8 +425,8 @@
    <widget class="QLabel" name="defense_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>350</y>
+      <x>680</x>
+      <y>120</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -510,7 +437,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -519,8 +446,8 @@
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>370</y>
+      <x>570</x>
+      <y>140</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -537,8 +464,8 @@
    <widget class="QLabel" name="special_attack_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>370</y>
+      <x>680</x>
+      <y>140</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -549,7 +476,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -558,8 +485,8 @@
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>390</y>
+      <x>570</x>
+      <y>160</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -576,8 +503,8 @@
    <widget class="QLabel" name="special_defense_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>390</y>
+      <x>680</x>
+      <y>160</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -588,7 +515,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -597,8 +524,8 @@
    <widget class="QLabel" name="label_24">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>410</y>
+      <x>570</x>
+      <y>180</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -615,8 +542,8 @@
    <widget class="QLabel" name="speed_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>410</y>
+      <x>680</x>
+      <y>180</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -627,7 +554,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -636,8 +563,8 @@
    <widget class="QLabel" name="label_26">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>450</y>
+      <x>570</x>
+      <y>220</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -654,8 +581,8 @@
    <widget class="QLabel" name="stat_total_label">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>450</y>
+      <x>680</x>
+      <y>220</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -666,7 +593,7 @@
      </font>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -675,9 +602,9 @@
    <widget class="QTreeWidget" name="treeWidget_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>520</y>
-      <width>256</width>
+      <x>570</x>
+      <y>670</y>
+      <width>541</width>
       <height>192</height>
      </rect>
     </property>
@@ -819,7 +746,7 @@
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>60</y>
       <width>51</width>
       <height>31</height>
@@ -837,7 +764,7 @@
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>110</y>
       <width>251</width>
       <height>31</height>
@@ -932,7 +859,7 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-20</x>
       <y>0</y>
       <width>581</width>
       <height>31</height>
@@ -953,7 +880,7 @@
    <widget class="QLabel" name="error_label">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>20</x>
       <y>140</y>
       <width>251</width>
       <height>31</height>
@@ -968,7 +895,7 @@
      <string notr="true">color: red</string>
     </property>
     <property name="text">
-     <string>Please enter a valid ID or Name</string>
+     <string>Please enter a valid Name or ID</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -983,7 +910,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>583</width>
+     <width>1123</width>
      <height>21</height>
     </rect>
    </property>
