@@ -282,6 +282,12 @@
       <height>341</height>
      </rect>
     </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::MultiSelection</enum>
+    </property>
+    <property name="sortingEnabled">
+     <bool>false</bool>
+    </property>
     <property name="wordWrap">
      <bool>true</bool>
     </property>
