@@ -250,11 +250,14 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             filename = self.__pokedexEntry["types"][0]["type"]["name"].upper() + "_icon_HOME3.png"
             pixmap = QPixmap('types' "\\" + filename)
             self.type_image_one_label.setPixmap(pixmap)
+            self.types_label.setText("Type")
         try:
             if self.__pokedexEntry["types"][1]:
                 filename = self.__pokedexEntry["types"][1]["type"]["name"].upper() + "_icon_HOME3.png"
                 pixmap = QPixmap('types' "\\" + filename)
                 self.type_image_two_label.setPixmap(pixmap)
+                self.type_image_two_label.show()
+                self.types_label.setText("Types")
         except IndexError:
             self.type_image_two_label.hide()
 
@@ -286,6 +289,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.__pokedexEntry = response.json()
         self.__pokemonName = self.__pokedexEntry["species"]["name"]
         self.pokemon_name_entry.setText(self.__pokemonName.capitalize())
+        self.pokedex_id_entry.setText(str(self.__pokedexEntry["id"]))
         self.__game = self.comboBox.currentText()
         self.download_sprites()
         self.update_sprite()

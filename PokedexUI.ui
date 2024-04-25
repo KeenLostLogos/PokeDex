@@ -943,7 +943,7 @@ color: rgb(0, 0, 0);</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
+   <widget class="QLabel" name="types_label">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -959,7 +959,7 @@ color: rgb(0, 0, 0);</string>
      </font>
     </property>
     <property name="text">
-     <string>Type(s)</string>
+     <string>Type</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
