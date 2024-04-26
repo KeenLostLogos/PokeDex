@@ -1,9 +1,11 @@
 import json
 import os
 import requests
+import pygame
 from PyQt6.QtGui import QPixmap, QFont, QIcon, QFontDatabase
 from PyQt6.QtWidgets import QMainWindow, QTreeWidgetItem
 from pokedexUI import Ui_MainWindow
+from playsound import playsound
 
 
 def download_file(url, directory, filename=""):
@@ -25,11 +27,6 @@ def download_file(url, directory, filename=""):
     return True
 
 
-def download_cry(url, pokemon):
-    directory = os.path.dirname(__file__) + r"\cries"
-    download_file(url, directory, pokemon)
-
-
 def kebab_to_start_case(kebab_case_string):
     words = kebab_case_string.split('-')
     start_case_string = ' '.join(word.capitalize() for word in words)
@@ -48,6 +45,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.__metric_system = True
         self.__game = self.comboBox.currentText()
         self.ui_changes()
+        pygame.mixer.init()
 
     def ui_changes(self):
         self.find_entry_pushButton.clicked.connect(self.get_pokedex_entry)
@@ -55,10 +53,14 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.pokemon_name_entry.returnPressed.connect(self.get_pokedex_entry)
         self.measurement_pushButton.clicked.connect(self.toggle_measurement_system)
         self.form_comboBox.currentIndexChanged.connect(self.update_sprite)
+        self.cry_current_pushButton.clicked.connect(lambda: self.play_cry("_latest.ogg"))
+        self.cry_legacy_pushButton.clicked.connect(lambda: self.play_cry("_legacy.ogg"))
         self.error_label.hide()
         self.no_abilities_label.hide()
         self.progressBar.hide()
         self.no_moves_label.hide()
+        self.cry_current_pushButton.hide()
+        self.cry_legacy_pushButton.hide()
         QFontDatabase.addApplicationFont("./Pokemon Solid.ttf")
         self.title_label.setFont(QFont("Pokemon Solid", 18))
         self.pokemon_move_treeWidget.setColumnWidth(0, 210)
@@ -77,15 +79,19 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.error_label.setText(string)
         self.error_label.show()
 
+    def play_cry(self, cry):
+        pygame.mixer.music.load("./cries/" + self.__pokemonName + cry)
+        pygame.mixer.music.play()
+
     def save_to_json(self):
-        if not os.path.exists(os.path.dirname(__file__) + "\\Moves"):
-            os.makedirs(os.path.dirname(__file__) + r"\Moves")
+        if not os.path.exists(os.path.dirname(__file__) + "\\moves"):
+            os.makedirs(os.path.dirname(__file__) + r"\moves")
         with open(r"Moves" + "\\" + f"{self.__game}.json", "w+") as file:
             json.dump(self.__allMoves, file)
 
     def read_from_json(self):
-        if os.path.exists(os.path.dirname(__file__) + r"\Moves" + "\\" + f"{self.__game}.json"):
-            with open(r"Moves" + "\\" + f"{self.__game}.json", 'r') as file:
+        if os.path.exists(os.path.dirname(__file__) + r"\moves" + "\\" + f"{self.__game}.json"):
+            with open(r"moves" + "\\" + f"{self.__game}.json", 'r') as file:
                 data = json.load(file)
             self.__allMoves = data
         else:
@@ -107,6 +113,18 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             download_file(shiny_female_url, directory, self.__pokemonName + "_shiny_female")
             self.form_comboBox.addItem("Female")
             self.form_comboBox.addItem("Shiny Female")
+
+    def download_cries(self):
+        self.cry_current_pushButton.show()
+        self.cry_legacy_pushButton.hide()
+        directory = os.path.dirname(__file__) + r"\cries"
+        if self.__pokedexEntry["cries"]["latest"]:
+            url = self.__pokedexEntry["cries"]["latest"]
+            download_file(url, directory, self.__pokemonName + "_latest")
+        if self.__pokedexEntry["cries"]["legacy"]:
+            url = self.__pokedexEntry["cries"]["legacy"]
+            download_file(url, directory, self.__pokemonName + "_legacy")
+            self.cry_legacy_pushButton.show()
 
     def update_sprite(self):
         if self.__pokedexEntry:
@@ -300,4 +318,5 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.update_height_and_weight()
         self.get_abilities()
         self.set_types()
+        self.download_cries()
         self.get_moves()

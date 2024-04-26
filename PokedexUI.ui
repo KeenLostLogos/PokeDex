@@ -128,8 +128,8 @@
    <widget class="QLabel" name="sprite_label">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>80</y>
+      <x>490</x>
+      <y>60</y>
       <width>161</width>
       <height>151</height>
      </rect>
@@ -213,8 +213,8 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>230</y>
+      <x>470</x>
+      <y>200</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -232,8 +232,8 @@
    <widget class="QLabel" name="height_label">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>230</y>
+      <x>580</x>
+      <y>200</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -254,8 +254,8 @@
    <widget class="QLabel" name="weight_label">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>260</y>
+      <x>580</x>
+      <y>230</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -276,8 +276,8 @@
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>260</y>
+      <x>470</x>
+      <y>230</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -1049,7 +1049,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>250</y>
+      <y>230</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -1067,7 +1067,7 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>490</x>
       <y>10</y>
       <width>161</width>
       <height>31</height>
@@ -1089,7 +1089,7 @@ color: rgb(0, 0, 0);</string>
    <widget class="QComboBox" name="form_comboBox">
     <property name="geometry">
      <rect>
-      <x>480</x>
+      <x>490</x>
       <y>40</y>
       <width>161</width>
       <height>22</height>
@@ -1171,6 +1171,63 @@ color: rgb(0, 0, 0);</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_19">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>260</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cries</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cry_current_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>260</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Current</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="cry_legacy_pushButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>260</y>
+      <width>61</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Legacy</string>
     </property>
    </widget>
   </widget>
