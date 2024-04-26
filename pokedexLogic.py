@@ -59,9 +59,8 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.no_abilities_label.hide()
         self.progressBar.hide()
         self.no_moves_label.hide()
-        font_id = QFontDatabase.addApplicationFont("./Pokemon Solid.ttf")
-        if font_id >= 0:
-            self.title_label.setFont(QFont("Pokemon Solid", 18))
+        QFontDatabase.addApplicationFont("./Pokemon Solid.ttf")
+        self.title_label.setFont(QFont("Pokemon Solid", 18))
         self.pokemon_move_treeWidget.setColumnWidth(0, 210)
         self.pokemon_move_treeWidget.setColumnWidth(1, 80)
         self.pokemon_move_treeWidget.setColumnWidth(2, 50)
