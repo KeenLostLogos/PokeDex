@@ -1,7 +1,7 @@
 import json
 import os
 import requests
-from PyQt6.QtGui import QPixmap, QFont, QIcon
+from PyQt6.QtGui import QPixmap, QFont, QIcon, QFontDatabase
 from PyQt6.QtWidgets import QMainWindow, QTreeWidgetItem
 from pokedexUI import Ui_MainWindow
 
@@ -59,6 +59,9 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.no_abilities_label.hide()
         self.progressBar.hide()
         self.no_moves_label.hide()
+        font_id = QFontDatabase.addApplicationFont("./Pokemon Solid.ttf")
+        if font_id >= 0:
+            self.title_label.setFont(QFont("Pokemon Solid", 18))
         self.pokemon_move_treeWidget.setColumnWidth(0, 210)
         self.pokemon_move_treeWidget.setColumnWidth(1, 80)
         self.pokemon_move_treeWidget.setColumnWidth(2, 50)
@@ -70,6 +73,10 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.ability_treeWidget.setColumnWidth(0, 125)
         self.ability_treeWidget.setColumnWidth(1, 60)
         self.pokemon_move_treeWidget.setAlternatingRowColors(True)
+
+    def send_error(self, string):
+        self.error_label.setText(string)
+        self.error_label.show()
 
     def save_to_json(self):
         if not os.path.exists(os.path.dirname(__file__) + "\\Moves"):
@@ -167,6 +174,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
                 else:
                     response = requests.get(move["move"]["url"])
                     if response.status_code != 200:
+                        self.send_error("Some moves were not able to be retrieved from the database, please try again.")
                         break
                     details = response.json()
                     effect = details["effect_entries"][0]["short_effect"] if details["effect_entries"] else ""
@@ -267,22 +275,18 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         name = self.pokemon_name_entry.text().strip().lower()
 
         if name == "" and pokemon_id == "":
-            self.error_label.setText("Please enter a valid Name or ID")
-            self.error_label.show()
+            self.send_error("Please enter a valid Name or ID")
             return
 
         url = url + pokemon_id if pokemon_id else url + name
         response = requests.get(url)
         if response.status_code != 200:
             if response.status_code == 404:
-                self.error_label.setText("Please enter a valid Name or ID.")
-                self.error_label.show()
+                self.send_error("Please enter a valid Name or ID.")
             elif response.status_code >= 500:
-                self.error_label.setText("The server currently unavailable, please try again later!")
-                self.error_label.show()
+                self.send_error("The server currently unavailable, please try again later!")
             else:
-                self.error_label.setText("There was an unexpected issue, please try again later!")
-                self.error_label.show()
+                self.send_error("There was an unexpected issue, please try again later!")
             return
 
         self.error_label.hide()
