@@ -58,6 +58,9 @@ def read_from_json(file) -> dict:
 
 
 class PokedexLogic(QMainWindow, Ui_MainWindow):
+    """
+    Creates a pokedex class that can search and display information about a specific pokemon and game
+    """
     FONT = "Pokemon GB"
 
     def __init__(self) -> None:
@@ -70,6 +73,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.__metric_system: bool = True
         self.__game: str = self.comboBox.currentText()
         pygame.mixer.init()
+
     def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
         """
         On application close, dumps the lists of moves into a JSON file
