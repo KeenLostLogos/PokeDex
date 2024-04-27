@@ -9,17 +9,11 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>968</width>
-    <height>928</height>
+    <width>1238</width>
+    <height>985</height>
    </rect>
   </property>
   <property name="minimumSize">
-   <size>
-    <width>968</width>
-    <height>788</height>
-   </size>
-  </property>
-  <property name="maximumSize">
    <size>
     <width>968</width>
     <height>928</height>
@@ -41,9 +35,9 @@
    <widget class="QPushButton" name="find_entry_pushButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>210</y>
-      <width>101</width>
+      <x>70</x>
+      <y>290</y>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -60,8 +54,8 @@
    <widget class="QLineEdit" name="pokedex_id_entry">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>140</y>
+      <x>180</x>
+      <y>220</y>
       <width>151</width>
       <height>20</height>
      </rect>
@@ -75,10 +69,10 @@
    <widget class="QLineEdit" name="pokemon_name_entry">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>100</y>
+      <x>180</x>
+      <y>169</y>
       <width>151</width>
-      <height>20</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -91,15 +85,15 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>100</y>
-      <width>111</width>
-      <height>16</height>
+      <y>170</y>
+      <width>161</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
@@ -110,15 +104,15 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
-      <width>91</width>
-      <height>16</height>
+      <y>220</y>
+      <width>161</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
@@ -128,8 +122,8 @@
    <widget class="QLabel" name="sprite_label">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>60</y>
+      <x>660</x>
+      <y>120</y>
       <width>161</width>
       <height>151</height>
      </rect>
@@ -150,38 +144,19 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Moves</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>10</y>
+      <x>960</x>
+      <y>80</y>
       <width>261</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -213,8 +188,8 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>200</y>
+      <x>610</x>
+      <y>270</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -222,7 +197,7 @@
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>13</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -232,16 +207,16 @@
    <widget class="QLabel" name="height_label">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>200</y>
-      <width>91</width>
+      <x>730</x>
+      <y>270</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>13</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -254,16 +229,16 @@
    <widget class="QLabel" name="weight_label">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>230</y>
-      <width>91</width>
+      <x>730</x>
+      <y>300</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>13</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -276,8 +251,8 @@
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>230</y>
+      <x>610</x>
+      <y>300</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -285,7 +260,7 @@
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>13</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -296,14 +271,15 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
-      <width>951</width>
+      <y>370</y>
+      <width>1211</width>
       <height>451</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -332,6 +308,11 @@ color: rgb(0, 0, 0);</string>
     </column>
     <column>
      <property name="text">
+      <string>Damage</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Power</string>
      </property>
     </column>
@@ -343,11 +324,6 @@ color: rgb(0, 0, 0);</string>
     <column>
      <property name="text">
       <string>PP</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>Damage Class</string>
      </property>
     </column>
     <column>
@@ -364,16 +340,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="hp_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>60</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>120</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -386,16 +362,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>60</y>
-      <width>111</width>
-      <height>21</height>
+      <x>960</x>
+      <y>120</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -405,16 +381,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>90</y>
-      <width>111</width>
-      <height>21</height>
+      <x>960</x>
+      <y>150</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -424,16 +400,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="attack_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>90</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>150</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -446,16 +422,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>120</y>
-      <width>111</width>
-      <height>21</height>
+      <x>960</x>
+      <y>180</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -465,16 +441,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="defense_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>120</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>180</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -487,16 +463,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>150</y>
-      <width>141</width>
-      <height>21</height>
+      <x>960</x>
+      <y>210</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -506,16 +482,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="special_attack_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>150</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>210</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -528,16 +504,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>180</y>
-      <width>141</width>
-      <height>21</height>
+      <x>960</x>
+      <y>240</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -547,16 +523,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="special_defense_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>180</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>240</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -569,16 +545,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_24">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>210</y>
-      <width>111</width>
-      <height>21</height>
+      <x>960</x>
+      <y>270</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -588,16 +564,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="speed_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>210</y>
-      <width>91</width>
-      <height>16</height>
+      <x>1140</x>
+      <y>270</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -610,16 +586,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_26">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>250</y>
-      <width>91</width>
-      <height>21</height>
+      <x>960</x>
+      <y>320</y>
+      <width>181</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -629,16 +605,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="stat_total_label">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>250</y>
-      <width>91</width>
-      <height>21</height>
+      <x>1140</x>
+      <y>320</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>12</pointsize>
+      <pointsize>9</pointsize>
      </font>
     </property>
     <property name="text">
@@ -652,7 +628,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>110</y>
+      <y>190</y>
       <width>51</width>
       <height>31</height>
      </rect>
@@ -660,7 +636,7 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>11</pointsize>
+      <pointsize>8</pointsize>
      </font>
     </property>
     <property name="text">
@@ -671,7 +647,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>170</y>
+      <y>240</y>
       <width>271</width>
       <height>31</height>
      </rect>
@@ -679,10 +655,11 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>ID will be preferred when both are entered</string>
+     <string>ID will be preferred when both are entered.</string>
     </property>
     <property name="wordWrap">
      <bool>true</bool>
@@ -691,16 +668,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="title_label">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
-      <width>321</width>
-      <height>61</height>
+      <width>1251</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>16</pointsize>
+      <pointsize>26</pointsize>
      </font>
     </property>
     <property name="text">
@@ -714,7 +691,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>240</y>
+      <y>320</y>
       <width>271</width>
       <height>51</height>
      </rect>
@@ -722,7 +699,7 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>11</pointsize>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -741,15 +718,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>60</y>
-      <width>151</width>
-      <height>22</height>
+      <x>20</x>
+      <y>130</y>
+      <width>311</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="currentText">
@@ -855,7 +833,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>110</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -863,44 +841,26 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>10</pointsize>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Pokemon Game</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_14">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>70</y>
-      <width>51</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Verdana</family>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>and</string>
-    </property>
-   </widget>
    <widget class="QTreeWidget" name="ability_treeWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>770</y>
-      <width>951</width>
+      <y>830</y>
+      <width>1211</width>
       <height>101</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <column>
@@ -928,9 +888,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>770</y>
-      <width>951</width>
-      <height>101</height>
+      <y>860</y>
+      <width>1211</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -949,16 +909,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="types_label">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
+      <x>400</x>
+      <y>80</y>
       <width>91</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="toolTip">
@@ -977,8 +937,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="type_image_one_label">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>60</y>
+      <x>400</x>
+      <y>120</y>
       <width>91</width>
       <height>91</height>
      </rect>
@@ -1002,8 +962,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="type_image_two_label">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>160</y>
+      <x>400</x>
+      <y>220</y>
       <width>91</width>
       <height>91</height>
      </rect>
@@ -1028,7 +988,7 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>880</y>
+      <y>940</y>
       <width>951</width>
       <height>23</height>
      </rect>
@@ -1048,8 +1008,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="measurement_pushButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>230</y>
+      <x>580</x>
+      <y>290</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -1067,16 +1027,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>10</y>
+      <x>660</x>
+      <y>80</y>
       <width>161</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>16</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -1087,10 +1047,13 @@ color: rgb(0, 0, 0);</string>
     </property>
    </widget>
    <widget class="QComboBox" name="form_comboBox">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>40</y>
+      <x>660</x>
+      <y>100</y>
       <width>161</width>
       <height>22</height>
      </rect>
@@ -1128,9 +1091,9 @@ color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
-      <width>951</width>
-      <height>451</height>
+      <y>410</y>
+      <width>1211</width>
+      <height>371</height>
      </rect>
     </property>
     <property name="font">
@@ -1149,16 +1112,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="types_label_2">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>10</y>
+      <x>490</x>
+      <y>80</y>
       <width>31</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>14</pointsize>
+      <pointsize>10</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -1176,8 +1139,8 @@ color: rgb(0, 0, 0);</string>
    <widget class="QLabel" name="label_19">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>260</y>
+      <x>610</x>
+      <y>330</y>
       <width>71</width>
       <height>31</height>
      </rect>
@@ -1185,7 +1148,7 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>13</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
@@ -1195,16 +1158,16 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="cry_current_pushButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>260</y>
-      <width>61</width>
+      <x>690</x>
+      <y>330</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>9</pointsize>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="text">
@@ -1214,20 +1177,48 @@ color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="cry_legacy_pushButton">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>260</y>
-      <width>61</width>
+      <x>770</x>
+      <y>330</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>9</pointsize>
+      <pointsize>7</pointsize>
      </font>
     </property>
     <property name="text">
      <string>Legacy</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="types_label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>311</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows the most current competitive type for a pokemon, some pokemon might be a different type or laking their second type in earlier generations.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
+    </property>
+    <property name="text">
+     <string>Game-Pokemon</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
@@ -1236,7 +1227,7 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>968</width>
+     <width>1238</width>
      <height>21</height>
     </rect>
    </property>
