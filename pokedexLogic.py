@@ -121,7 +121,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         :return: None
         """
         suffix: str = "_legacy.ogg" if legacy_cry else "_latest.ogg"
-        pygame.mixer.music.load("./cries/" + self.__pokemonName + suffix)
+        pygame.mixer.music.load("./cries/" + self.pokemonName + suffix)
         pygame.mixer.music.play()
 
     def download_sprites(self) -> None:
@@ -130,19 +130,19 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         :return: None
         """
         directory: str = os.path.dirname(os.path.abspath(__file__)) + r"\sprites"
-        default_url: str = self.__pokedexEntry["sprites"]["front_default"]
-        shiny_url: str = self.__pokedexEntry["sprites"]["front_shiny"]
-        female_url: str = self.__pokedexEntry["sprites"]["front_female"]
-        shiny_female_url: str = self.__pokedexEntry["sprites"]["front_shiny_female"]
+        default_url: str = self.pokedexEntry["sprites"]["front_default"]
+        shiny_url: str = self.pokedexEntry["sprites"]["front_shiny"]
+        female_url: str = self.pokedexEntry["sprites"]["front_female"]
+        shiny_female_url: str = self.pokedexEntry["sprites"]["front_shiny_female"]
         self.form_comboBox.setCurrentText("Default")
         self.form_comboBox.removeItem(2)
         self.form_comboBox.removeItem(2)
         try:
-            download_file(default_url, directory, self.__pokemonName + "_default")
-            download_file(shiny_url, directory, self.__pokemonName + "_shiny")
+            download_file(default_url, directory, self.pokemonName + "_default")
+            download_file(shiny_url, directory, self.pokemonName + "_shiny")
             if female_url:
-                download_file(female_url, directory, self.__pokemonName + "_female")
-                download_file(shiny_female_url, directory, self.__pokemonName + "_shiny_female")
+                download_file(female_url, directory, self.pokemonName + "_female")
+                download_file(shiny_female_url, directory, self.pokemonName + "_shiny_female")
                 self.form_comboBox.addItem("Female")
                 self.form_comboBox.addItem("Shiny Female")
         except ConnectionError:
@@ -157,12 +157,12 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.cry_legacy_pushButton.hide()
         directory: str = os.path.dirname(__file__) + r"\cries"
         try:
-            if self.__pokedexEntry["cries"]["latest"]:
-                url = self.__pokedexEntry["cries"]["latest"]
-                download_file(url, directory, self.__pokemonName + "_latest")
-            if self.__pokedexEntry["cries"]["legacy"]:
-                url = self.__pokedexEntry["cries"]["legacy"]
-                download_file(url, directory, self.__pokemonName + "_legacy")
+            if self.pokedexEntry["cries"]["latest"]:
+                url = self.pokedexEntry["cries"]["latest"]
+                download_file(url, directory, self.pokemonName + "_latest")
+            if self.pokedexEntry["cries"]["legacy"]:
+                url = self.pokedexEntry["cries"]["legacy"]
+                download_file(url, directory, self.pokemonName + "_legacy")
                 self.cry_legacy_pushButton.show()
         except ConnectionError:
             self.send_error("Unable to download one or more cries, try again later.")
@@ -174,9 +174,9 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         """
         if not self.form_comboBox.isEnabled():
             self.form_comboBox.setEnabled(True)
-        if self.__pokedexEntry:
+        if self.pokedexEntry:
             file_suffix: str = "_" + self.form_comboBox.currentText().lower().replace(" ", "_")
-            filename: str = self.__pokemonName + file_suffix
+            filename: str = self.pokemonName + file_suffix
             pixmap: QPixmap = QPixmap('./sprites' "\\" + filename)
             self.sprite_label.setPixmap(pixmap)
 
@@ -190,7 +190,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.no_abilities_label.hide()
         no_abilities_in_current_gen: bool = True
 
-        for ability in self.__pokedexEntry["abilities"]:
+        for ability in self.pokedexEntry["abilities"]:
             name: str = kebab_to_start_case(ability["ability"]["name"])
             hidden: str = ability["is_hidden"]
             response: requests.models.Response = requests.get(ability["ability"]["url"])
@@ -200,7 +200,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             for text in details["flavor_text_entries"]:
                 if "en" != text["language"]["name"]:
                     continue
-                if self.__game != kebab_to_start_case(text["version_group"]["name"]):
+                if self.game != kebab_to_start_case(text["version_group"]["name"]):
                     continue
                 flavor_text: str = text["flavor_text"].replace("\n", " ")
                 generation: str = details["generation"]["name"].split("-")[-1].upper()
@@ -226,12 +226,12 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.progressBar.show()
         self.progressBar.setValue(0)
         progress: int = 0
-        self.__game = self.comboBox.currentText()
+        self.game = self.comboBox.currentText()
         self.pokemon_move_treeWidget.clear()
-        self.__methods = {}
+        self.methods = {}
         already_displayed: list = []
-        self.progressBar.setMaximum(len(self.__pokedexEntry["moves"]))
-        for move in self.__pokedexEntry["moves"]:
+        self.progressBar.setMaximum(len(self.pokedexEntry["moves"]))
+        for move in self.pokedexEntry["moves"]:
             for version in move["version_group_details"]:
 
                 name: str = kebab_to_start_case(move["move"]["name"])
@@ -239,12 +239,12 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
                     break
 
                 game_version: str = kebab_to_start_case(version["version_group"]["name"])
-                if game_version != self.__game:
+                if game_version != self.game:
                     continue
 
                 method: str = kebab_to_start_case(version["move_learn_method"]["name"])
                 lvl_learned: str = str(version["level_learned_at"])
-                if name in self.__allMoves.keys():
+                if name in self.allMoves.keys():
                     self.add_tree_item(name, lvl_learned, method)
                     already_displayed.append(name)
                 else:
@@ -266,7 +266,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
                                       "type": details["type"]["name"],
                                       "damage_class": details["damage_class"]["name"],
                                       "effect": effect}
-                    self.__allMoves[name] = new_move
+                    self.allMoves[name] = new_move
                     already_displayed.append(name)
                     self.add_tree_item(name, lvl_learned, method)
             progress += 1
@@ -274,6 +274,8 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         if not already_displayed:
             self.no_moves_label.show()
         self.progressBar.hide()
+        with open("./moves.json", "w+") as file:
+            json.dump(self.allMoves, file)
 
     def add_tree_item(self, move_name: str, learned_at: str, learn_method: str) -> None:
         """
@@ -283,42 +285,47 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         :param learn_method: the method the pokemon learns the move
         :return: None
         """
-        move: dict = self.__allMoves[move_name]
-        if learn_method not in self.__methods:
-            self.__methods[learn_method] = QTreeWidgetItem(self.pokemon_move_treeWidget)
-            self.pokemon_move_treeWidget.addTopLevelItem(self.__methods[learn_method])
-            self.__methods[learn_method].setText(0, learn_method)
-            self.__methods[learn_method].setFont(0, QFont(PokedexLogic.FONT, 10))
-        tree_item: QTreeWidgetItem = QTreeWidgetItem(self.__methods[learn_method])
+        move: dict = self.allMoves[move_name]
+        if learn_method not in self.methods:
+            self.methods[learn_method] = QTreeWidgetItem(self.pokemon_move_treeWidget)
+            self.pokemon_move_treeWidget.addTopLevelItem(self.methods[learn_method])
+            self.methods[learn_method].setText(0, learn_method)
+            self.methods[learn_method].setFont(0, QFont(PokedexLogic.FONT, 10))
+        tree_item: QTreeWidgetItem = QTreeWidgetItem(self.methods[learn_method])
         name: str = move["name"] if learn_method != "Level Up" else f"{move['name']}-{learned_at}"
         tree_item.setText(0, name)
-        tree_item.setFont(0, QFont(PokedexLogic.FONT, 8))
+        tree_item.setFont(0, QFont("Verdana", 14))
         tree_item.setText(1, move["type"].capitalize())
         tree_item.setFont(1, QFont(PokedexLogic.FONT, 7))
         tree_item.setIcon(1, QIcon(f"./types/{move['type'].capitalize()}_icon_HOME3.png"))
         tree_item.setIcon(2, QIcon(f"./types/{move['damage_class'].capitalize()}.png"))
         tree_item.setText(3, move["power"] if move["power"] != "None" else "")
         tree_item.setTextAlignment(3, Qt.AlignmentFlag.AlignCenter)
+        tree_item.setFont(3, QFont(PokedexLogic.FONT, 9))
         tree_item.setText(4, move["accuracy"] if move["accuracy"] != "None" else "")
         tree_item.setTextAlignment(4, Qt.AlignmentFlag.AlignCenter)
+        tree_item.setFont(4, QFont(PokedexLogic.FONT, 9))
         tree_item.setText(5, move["pp"])
         tree_item.setTextAlignment(5, Qt.AlignmentFlag.AlignCenter)
+        tree_item.setFont(5, QFont(PokedexLogic.FONT, 9))
         tree_item.setText(6, move["priority"] if move["priority"] != "0" else "")
         tree_item.setTextAlignment(6, Qt.AlignmentFlag.AlignCenter)
+        tree_item.setFont(6, QFont(PokedexLogic.FONT, 9))
         tree_item.setText(7, move["effect"])
+        tree_item.setFont(7, QFont("Verdana", 10))
 
     def update_stats(self) -> None:
         """
         Displays the stats of the selected pokemon
         :return: None
         """
-        self.hp_label.setText(str(self.__pokedexEntry["stats"][0]["base_stat"]))
-        self.attack_label.setText(str(self.__pokedexEntry["stats"][1]["base_stat"]))
-        self.defense_label.setText(str(self.__pokedexEntry["stats"][2]["base_stat"]))
-        self.special_attack_label.setText(str(self.__pokedexEntry["stats"][3]["base_stat"]))
-        self.special_defense_label.setText(str(self.__pokedexEntry["stats"][4]["base_stat"]))
-        self.speed_label.setText(str(self.__pokedexEntry["stats"][5]["base_stat"]))
-        total: str = str(sum(stat["base_stat"] for stat in self.__pokedexEntry["stats"]))
+        self.hp_label.setText(str(self.pokedexEntry["stats"][0]["base_stat"]))
+        self.attack_label.setText(str(self.pokedexEntry["stats"][1]["base_stat"]))
+        self.defense_label.setText(str(self.pokedexEntry["stats"][2]["base_stat"]))
+        self.special_attack_label.setText(str(self.pokedexEntry["stats"][3]["base_stat"]))
+        self.special_defense_label.setText(str(self.pokedexEntry["stats"][4]["base_stat"]))
+        self.speed_label.setText(str(self.pokedexEntry["stats"][5]["base_stat"]))
+        total: str = str(sum(stat["base_stat"] for stat in self.pokedexEntry["stats"]))
         self.stat_total_label.setText(total)
 
     def toggle_measurement_system(self) -> None:
@@ -326,11 +333,11 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         Toggles between the Metric and Imperial systems of measurement
         :return: None
         """
-        if self.__metric_system:
-            self.__metric_system = False
+        if self.metric_system:
+            self.metric_system = False
             self.update_height_and_weight()
         else:
-            self.__metric_system = True
+            self.metric_system = True
             self.update_height_and_weight()
 
     def update_height_and_weight(self) -> None:
@@ -338,14 +345,14 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         Displays the height and weight of the selected pokemon
         :return: None
         """
-        if self.__pokedexEntry:
-            height: float = float(self.__pokedexEntry["height"] / 10)
-            weight: float = float(self.__pokedexEntry["weight"] / 10)
-            if not self.__metric_system:
+        if self.pokedexEntry:
+            height: float = float(self.pokedexEntry["height"] / 10)
+            weight: float = float(self.pokedexEntry["weight"] / 10)
+            if not self.metric_system:
                 height = height * 3.281
                 weight = weight * 2.205
-            height_label: str = "m" if self.__metric_system else "ft"
-            weight_label: str = "kg" if self.__metric_system else "lbs"
+            height_label: str = "m" if self.metric_system else "ft"
+            weight_label: str = "kg" if self.metric_system else "lbs"
             self.height_label.setText(str(round(height, 1)) + height_label)
             self.weight_label.setText(str(round(weight, 1)) + weight_label)
 
@@ -354,14 +361,14 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         Displays the type or types of the selected pokemon
         :return: None
         """
-        if self.__pokedexEntry["types"][0]:
-            filename: str = self.__pokedexEntry["types"][0]["type"]["name"].upper() + "_icon_HOME3.png"
+        if self.pokedexEntry["types"][0]:
+            filename: str = self.pokedexEntry["types"][0]["type"]["name"].upper() + "_icon_HOME3.png"
             pixmap: QPixmap = QPixmap('types' "\\" + filename)
             self.type_image_one_label.setPixmap(pixmap)
             self.types_label.setText("Type")
         try:
-            if self.__pokedexEntry["types"][1]:
-                filename = self.__pokedexEntry["types"][1]["type"]["name"].upper() + "_icon_HOME3.png"
+            if self.pokedexEntry["types"][1]:
+                filename = self.pokedexEntry["types"][1]["type"]["name"].upper() + "_icon_HOME3.png"
                 pixmap: QPixmap = QPixmap('types' "\\" + filename)
                 self.type_image_two_label.setPixmap(pixmap)
                 self.type_image_two_label.show()
@@ -394,11 +401,11 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             return
 
         self.error_label.hide()
-        self.__pokedexEntry = response.json()
-        self.__pokemonName = self.__pokedexEntry["species"]["name"]
-        self.pokemon_name_entry.setText(self.__pokemonName.capitalize())
-        self.pokedex_id_entry.setText(str(self.__pokedexEntry["id"]))
-        self.__game = self.comboBox.currentText()
+        self.pokedexEntry = response.json()
+        self.pokemonName = self.pokedexEntry["species"]["name"]
+        self.pokemon_name_entry.setText(self.pokemonName.capitalize())
+        self.pokedex_id_entry.setText(str(self.pokedexEntry["id"]))
+        self.game = self.comboBox.currentText()
         self.download_sprites()
         self.update_sprite()
         self.update_stats()
