@@ -66,22 +66,44 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
-        self.__pokemonName: str = ""
-        self.__pokedexEntry: dict = {}
-        self.__methods: dict = {}
-        self.__allMoves: dict = read_from_json("moves")
-        self.__metric_system: bool = True
-        self.__game: str = self.comboBox.currentText()
+        self.pokemonName: str = ""
+        self.pokedexEntry: dict = {}
+        self.methods: dict = {}
+        self.allMoves: dict = read_from_json("moves")
+        self.metric_system: bool = True
+        self.game: str = self.comboBox.currentText()
         pygame.mixer.init()
+        self.configUI()
+            
+    def configUI(self):
+        self.find_entry_pushButton.clicked.connect(self.get_pokedex_entry)
+        self.pokedex_id_entry.returnPressed.connect(self.get_pokedex_entry)
+        self.pokemon_name_entry.returnPressed.connect(self.get_pokedex_entry)
+        self.measurement_pushButton.clicked.connect(self.toggle_measurement_system)
+        self.form_comboBox.currentIndexChanged.connect(self.update_sprite)
+        self.cry_current_pushButton.clicked.connect(self.play_cry)
+        self.cry_legacy_pushButton.clicked.connect(lambda: self.play_cry(True))
+        self.error_label.hide()
+        self.no_abilities_label.hide()
+        self.progressBar.hide()
+        self.no_moves_label.hide()
+        self.cry_current_pushButton.hide()
+        self.cry_legacy_pushButton.hide()
+        self.title_label.setStyleSheet("font-family: 'Pokemon Solid'; color: '#ffd733'; background-color: '#1111ff'")
+        self.pokemon_move_treeWidget.header().setStyleSheet("font-family: 'Pokemon GB'")
+        self.ability_treeWidget.header().setStyleSheet("font-family: 'Pokemon GB'")
+        self.pokemon_move_treeWidget.setColumnWidth(0, 220)
+        self.pokemon_move_treeWidget.setColumnWidth(1, 100)
+        self.pokemon_move_treeWidget.setColumnWidth(2, 50)
+        self.pokemon_move_treeWidget.setColumnWidth(3, 50)
+        self.pokemon_move_treeWidget.setColumnWidth(4, 50)
+        self.pokemon_move_treeWidget.setColumnWidth(5, 40)
+        self.pokemon_move_treeWidget.setColumnWidth(6, 110)
+        self.ability_treeWidget.setColumnWidth(0, 140)
+        self.ability_treeWidget.setColumnWidth(1, 90)
+        self.ability_treeWidget.setColumnWidth(2, 70)
 
-    def closeEvent(self, a0: QtGui.QCloseEvent) -> None:
-        """
-        On application close, dumps the lists of moves into a JSON file
-        :param a0: Default Param for close event
-        :return: None
-        """
-        with open("./moves.json", "w+") as file:
-            json.dump(self.__allMoves, file)
+        self.pokemon_move_treeWidget.setAlternatingRowColors(True)
 
     def send_error(self, error_text: str) -> None:
         """
