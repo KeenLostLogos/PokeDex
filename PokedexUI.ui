@@ -283,8 +283,8 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-alternate-background-color: rgb(225, 225, 225);
+     <string notr="true">background-color: rgb(176,208,140);
+alternate-background-color: rgb(156,196,116);
 color: rgb(0, 0, 0);</string>
     </property>
     <property name="selectionMode">
@@ -298,27 +298,27 @@ color: rgb(0, 0, 0);</string>
     </property>
     <column>
      <property name="text">
-      <string>Move</string>
+      <string>MOVE</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Type</string>
+      <string>TYPE</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Damage</string>
+      <string>CAT</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Power</string>
+      <string>PWR</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Accuracy</string>
+      <string>ACC</string>
      </property>
     </column>
     <column>
@@ -328,12 +328,12 @@ color: rgb(0, 0, 0);</string>
     </column>
     <column>
      <property name="text">
-      <string>Priority</string>
+      <string>PRIORITY</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Effect</string>
+      <string>EFFECT</string>
      </property>
     </column>
    </widget>
@@ -860,8 +860,13 @@ color: rgb(0, 0, 0);</string>
     <property name="font">
      <font>
       <family>Verdana</family>
-      <pointsize>7</pointsize>
+      <pointsize>11</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(176,208,140);
+alternate-background-color: rgb(156,196,116);
+color: rgb(0, 0, 0);</string>
     </property>
     <column>
      <property name="text">
@@ -875,7 +880,7 @@ color: rgb(0, 0, 0);</string>
     </column>
     <column>
      <property name="text">
-      <string>Generation</string>
+      <string>GEN</string>
      </property>
     </column>
     <column>
@@ -989,7 +994,7 @@ color: rgb(0, 0, 0);</string>
      <rect>
       <x>10</x>
       <y>940</y>
-      <width>951</width>
+      <width>1211</width>
       <height>23</height>
      </rect>
     </property>
