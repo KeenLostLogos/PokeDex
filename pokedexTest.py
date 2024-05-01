@@ -1,23 +1,49 @@
+import json
 import os
 import re
+import pygame
 import requests_mock
 from PyQt6.QtCore import Qt
-from pokedexLogic import PokedexLogic, read_from_json
+from pokedexLogic import PokedexLogic, read_from_json, kebab_to_start_case, download_file
 
 
+@requests_mock.Mocker(kw='mock')
 class TestDownloadFile:
-    # TODO implement test cases
-    pass
+
+    def test_no_directory(self, qtbot, **kwargs):
+        mock_data = read_from_json("testData/test")
+        kwargs['mock'].get("https://test.test", json=mock_data, status_code=200)
+        download_file("https://test.test", "./testData/testDirectory/", "download_test")
+        assert os.path.exists("./testData") is True
+        os.remove("./testData/testDirectory/download_test.test")
+        os.removedirs("./testData/testDirectory")
+
+    def test_file_exists(self, **kwargs):
+        download_file("https://test.json", "./testData/", "test")
+        assert read_from_json("./testData/test") == {"test": "test"}
+
+    def test_no_file_exists(self, qtbot, **kwargs):
+        mock_data = read_from_json("testData/test")
+        kwargs['mock'].get("https://test.test", json=mock_data, status_code=200)
+        download_file("https://test.test", "./testData/testDirectory/", "download_test")
+        assert os.path.exists("./testData/testDirectory/download_test.test") is True
+        os.remove("./testData/testDirectory/download_test.test")
+        os.removedirs("./testData/testDirectory")
 
 
 class TestKebabToStartCase:
-    # TODO implement test cases
-    pass
+
+    def test_string(self):
+        assert kebab_to_start_case("test-string") == "Test String"
 
 
 class TestReadFromJson:
-    # TODO implement test cases
-    pass
+
+    def test_invalid_file(self):
+        assert read_from_json("./testData/test2") == {}
+
+    def test_valid_file(self):
+        assert read_from_json("./testData/test") == {"test": "test"}
 
 
 class TestInitAndConfigUI:
@@ -26,13 +52,36 @@ class TestInitAndConfigUI:
 
 
 class TestSendError:
-    # TODO implement test cases
-    pass
+    def test_error_message(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.send_error("Test Error")
+
+        assert dex.error_label.text() == "Test Error"
 
 
 class TestPlayCry:
-    # TODO implement test cases
-    pass
+    def test_no_file(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokemonName = "Test"
+        dex.play_cry()
+        assert pygame.mixer.music.get_busy() is False
+        assert dex.error_label.text() == "Cry was not able to be played as this time, please try later!"
+
+    def test_latest(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokemonName = "abra"
+        dex.play_cry()
+        assert pygame.mixer.music.get_busy() is True
+
+    def test_legacy(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokemonName = "abra"
+        dex.play_cry(True)
+        assert pygame.mixer.music.get_busy() is True
 
 
 class TestDownloadSprites:
@@ -50,9 +99,29 @@ class TestUpdateSprites:
     pass
 
 
+@requests_mock.Mocker(kw='mock')
 class TestGetAbilities:
-    # TODO implement test cases
-    pass
+
+    def test_invalid_selection(self, qtbot, **kwargs):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.get_abilities()
+
+        assert dex.ability_treeWidget.topLevelItem(0) is None
+
+    def test_valid_selection(self, qtbot, **kwargs):
+        mock_data = read_from_json("./testData/testAbility1")
+        kwargs['mock'].get("https://pokeapi.co/api/v2/ability/65/", json=mock_data, status_code=200)
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokedexEntry = read_from_json("./testData/Pokedex_test_entry")
+        dex.game = "Emerald"
+        dex.get_abilities()
+
+        assert dex.ability_treeWidget.topLevelItem(0).text(0) == "Overgrow"
+        assert dex.ability_treeWidget.topLevelItem(0).text(1) == ""
+        assert dex.ability_treeWidget.topLevelItem(0).text(2) == "III"
+        assert dex.ability_treeWidget.topLevelItem(0).text(3) == "Ups GRASS moves in a pinch."
 
 
 class TestGetMoves:
@@ -72,8 +141,11 @@ class TestAddTreeItem:
     def test_valid_selection(self, qtbot):
         dex = PokedexLogic()
         qtbot.addWidget(dex)
-        # TODO need to make sure that this file exists and has the move 'Swords Dance'
         dex.pokedexEntry = read_from_json("./testData/Pokedex_test_entry")
+        data = read_from_json("./testData/test_move")
+        with open("./moves.json", "w+") as file:
+            json.dump(data, file)
+        dex.allMoves = read_from_json("moves")
         dex.add_tree_item("Swords Dance", "test", "test")
 
         assert dex.pokemon_move_treeWidget.topLevelItem(0).text(0) == "test"
@@ -209,6 +281,10 @@ class TestGetPokeDexEntry:
         mock_move_data = read_from_json("testData/test_move")
         ability_url_mock = re.compile(".*ability.*")
         move_url_mock = re.compile(".*move.*")
+        with open("./moves.json", "w+") as file:
+            data = read_from_json("./testData/test_move")
+            json.dump(data, file)
+        dex.allMoves = read_from_json("moves")
         kwargs['mock'].get("https://pokeapi.co/api/v2/pokemon/1", json=mock_pokedex_data, status_code=200)
         kwargs['mock'].get(ability_url_mock, json=mock_ability_data, status_code=200)
         kwargs['mock'].get(move_url_mock, json=mock_move_data, status_code=200)

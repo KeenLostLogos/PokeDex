@@ -5,6 +5,8 @@ import pygame
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 from PyQt6.QtWidgets import QMainWindow, QTreeWidgetItem
 from PyQt6.QtCore import Qt
+from pygame import error
+
 from pokedexUI import Ui_MainWindow
 
 
@@ -121,15 +123,21 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         :param legacy_cry: When true, plays the legacy cry of the selected pokemon
         :return: None
         """
-        suffix: str = "_legacy.ogg" if legacy_cry else "_latest.ogg"
-        pygame.mixer.music.load("./cries/" + self.pokemonName + suffix)
-        pygame.mixer.music.play()
+        if not self.pokemonName == "":
+            suffix: str = "_legacy.ogg" if legacy_cry else "_latest.ogg"
+            try:
+                pygame.mixer.music.load("./cries/" + self.pokemonName + suffix)
+                pygame.mixer.music.play()
+            except error:
+                self.send_error("Cry was not able to be played as this time, please try later!")
 
     def download_sprites(self) -> None:
         """
         Downloads the sprite .png files for the selected pokemon and stores them in './sprites'
         :return: None
         """
+        if not self.pokedexEntry:
+            return
         directory: str = os.path.dirname(os.path.abspath(__file__)) + r"\sprites"
         default_url: str = self.pokedexEntry["sprites"]["front_default"]
         shiny_url: str = self.pokedexEntry["sprites"]["front_shiny"]
@@ -187,6 +195,9 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         and will filter out abilities not in the game selected.
         :return: None
         """
+        if not self.pokedexEntry:
+            return
+
         self.ability_treeWidget.clear()
         self.no_abilities_label.hide()
         no_abilities_in_current_gen: bool = True
