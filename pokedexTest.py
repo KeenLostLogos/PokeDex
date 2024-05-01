@@ -46,9 +46,22 @@ class TestReadFromJson:
         assert read_from_json("./testData/test") == {"test": "test"}
 
 
-class TestInitAndConfigUI:
-    # TODO implement test cases
-    pass
+class TestInit:
+
+    def test_init(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        data = read_from_json("./testData/test_move")
+        with open("./moves.json", "w+") as file:
+            json.dump(data, file)
+        assert dex.pokemonName == ""
+        assert dex.pokedexEntry == {}
+        assert dex.methods == {}
+        assert dex.metric_system is True
+        assert dex.game == ""
+        assert dex.allMoves == data
+        assert pygame.mixer.get_init() == (44100, -16, 2)
+        assert dex.form_comboBox.isEnabled() is False
 
 
 class TestSendError:
@@ -95,8 +108,20 @@ class TestDownloadCries:
 
 
 class TestUpdateSprites:
-    # TODO implement test cases
-    pass
+    def test_no_selection(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.update_sprite()
+
+        assert dex.form_comboBox.isEnabled() is False
+
+    def test_valid_selection(self, qtbot):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokedexEntry = read_from_json("./testData/Pokedex_test_entry")
+        dex.update_sprite()
+
+        assert dex.form_comboBox.isEnabled() is True
 
 
 @requests_mock.Mocker(kw='mock')
@@ -124,9 +149,37 @@ class TestGetAbilities:
         assert dex.ability_treeWidget.topLevelItem(0).text(3) == "Ups GRASS moves in a pinch."
 
 
+@requests_mock.Mocker(kw='mock')
 class TestGetMoves:
-    # TODO implement test cases
-    pass
+
+    def test_move_not_saved(self, qtbot, **kwargs):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        if os.path.exists("./moves.json"):
+            os.remove("./moves.json")
+        dex.pokedexEntry = read_from_json("./testData/Pokedex_test_entry")
+        mock_move_data = read_from_json("testData/test_move_full_JSON")
+        move_url_mock = re.compile(".*move.*")
+        kwargs['mock'].get(move_url_mock, json=mock_move_data, status_code=200)
+        dex.get_moves()
+        if os.path.exists("./moves.json"):
+            os.remove("./moves.json")
+        assert dex.pokemon_move_treeWidget.topLevelItem(0).child(0).text(7) == "\nTest Data\n"
+
+    def test_move_saved(self, qtbot, **kwargs):
+        dex = PokedexLogic()
+        qtbot.addWidget(dex)
+        dex.pokedexEntry = read_from_json("./testData/Pokedex_test_entry")
+        with open("./moves.json", "w+") as file:
+            data = read_from_json("./testData/test_move")
+            json.dump(data, file)
+        dex.allMoves = read_from_json("moves")
+        dex.get_moves()
+        if os.path.exists("./moves.json"):
+            os.remove("./moves.json")
+
+        assert dex.pokemon_move_treeWidget.topLevelItem(0).child(0).text(
+            7) == "\nRaises the user's Attack by two stages.\n"
 
 
 class TestAddTreeItem:
@@ -281,6 +334,8 @@ class TestGetPokeDexEntry:
         mock_move_data = read_from_json("testData/test_move")
         ability_url_mock = re.compile(".*ability.*")
         move_url_mock = re.compile(".*move.*")
+        sprite_url_mock = re.compile(".*sprites.*")
+        cry_url_mock = re.compile(".*cries.*")
         with open("./moves.json", "w+") as file:
             data = read_from_json("./testData/test_move")
             json.dump(data, file)
@@ -288,10 +343,14 @@ class TestGetPokeDexEntry:
         kwargs['mock'].get("https://pokeapi.co/api/v2/pokemon/1", json=mock_pokedex_data, status_code=200)
         kwargs['mock'].get(ability_url_mock, json=mock_ability_data, status_code=200)
         kwargs['mock'].get(move_url_mock, json=mock_move_data, status_code=200)
+        kwargs['mock'].get(sprite_url_mock, status_code=200)
+        kwargs['mock'].get(cry_url_mock, status_code=200)
         dex.pokedex_id_entry.setText("1")
         qtbot.mouseClick(dex.find_entry_pushButton, Qt.MouseButton.LeftButton)
         if os.path.exists("./moves.json"):
             os.remove("./moves.json")
+        os.remove("./cries/bulbasaur_latest.ogg")
+        os.remove("./cries/bulbasaur_legacy.ogg")
         assert dex.pokemonName == "bulbasaur"
         assert dex.game == "Red Blue"
         assert dex.error_label.isHidden() is True

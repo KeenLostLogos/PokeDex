@@ -181,9 +181,9 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         Updates the displayed sprite to the form selected in the UI
         :return: None
         """
-        if not self.form_comboBox.isEnabled():
-            self.form_comboBox.setEnabled(True)
         if self.pokedexEntry:
+            if not self.form_comboBox.isEnabled():
+                self.form_comboBox.setEnabled(True)
             file_suffix: str = "_" + self.form_comboBox.currentText().lower().replace(" ", "_")
             filename: str = self.pokemonName + file_suffix
             pixmap: QPixmap = QPixmap('./sprites' "\\" + filename)
