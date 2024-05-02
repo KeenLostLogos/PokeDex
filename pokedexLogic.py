@@ -4,7 +4,7 @@ import requests
 import pygame
 from PyQt6.QtGui import QPixmap, QFont, QIcon
 from PyQt6.QtWidgets import QMainWindow, QTreeWidgetItem
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QSize
 from pygame import error
 
 from pokedexUI import Ui_MainWindow
@@ -95,8 +95,8 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.title_label.setStyleSheet("font-family: 'Pokemon Solid'; color: '#ffd733'; background-color: '#1111ff'")
         self.pokemon_move_treeWidget.header().setStyleSheet("font-family: 'Pokemon GB'")
         self.ability_treeWidget.header().setStyleSheet("font-family: 'Pokemon GB'")
-        self.pokemon_move_treeWidget.setColumnWidth(0, 220)
-        self.pokemon_move_treeWidget.setColumnWidth(1, 100)
+        self.pokemon_move_treeWidget.setColumnWidth(0, 280)
+        self.pokemon_move_treeWidget.setColumnWidth(1, 140)
         self.pokemon_move_treeWidget.setColumnWidth(2, 50)
         self.pokemon_move_treeWidget.setColumnWidth(3, 50)
         self.pokemon_move_treeWidget.setColumnWidth(4, 50)
@@ -309,7 +309,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             tree_item.setText(0, name)
             tree_item.setFont(0, QFont("Verdana", 14))
             tree_item.setText(1, move["type"].capitalize())
-            tree_item.setFont(1, QFont(PokedexLogic.FONT, 7))
+            tree_item.setFont(1, QFont(PokedexLogic.FONT, 8))
             tree_item.setIcon(1, QIcon(f"./types/{move['type'].capitalize()}_icon_HOME3.png"))
             tree_item.setIcon(2, QIcon(f"./types/{move['damage_class'].capitalize()}.png"))
             tree_item.setText(3, move["power"] if move["power"] != "None" else "")
@@ -326,6 +326,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
             tree_item.setFont(6, QFont(PokedexLogic.FONT, 9))
             tree_item.setText(7, move["effect"])
             tree_item.setFont(7, QFont("Verdana", 10))
+            self.pokemon_move_treeWidget.setIconSize(QSize(30, 30))
 
     def update_stats(self) -> None:
         """
