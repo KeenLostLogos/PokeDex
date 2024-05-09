@@ -6,7 +6,6 @@ from PyQt6.QtGui import QPixmap, QFont, QIcon
 from PyQt6.QtWidgets import QMainWindow, QTreeWidgetItem
 from PyQt6.QtCore import Qt, QSize
 from pygame import error
-
 from pokedexUI import Ui_MainWindow
 
 
@@ -64,7 +63,6 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
     """
     FONT = "Pokemon GB"
 
-    # TODO add clear function and button
     def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
@@ -77,8 +75,7 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         pygame.mixer.init()
         self.configUI()
 
-    def configUI(self):
-        # TODO add pokeball image behind the pokemon, possibly a mesh as well
+    def configUI(self) -> None:
         self.find_entry_pushButton.clicked.connect(self.get_pokedex_entry)
         self.pokedex_id_entry.returnPressed.connect(self.get_pokedex_entry)
         self.pokemon_name_entry.returnPressed.connect(self.get_pokedex_entry)

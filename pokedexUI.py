@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
         self.sprite_label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.sprite_label.setGeometry(QtCore.QRect(660, 120, 161, 151))
+        self.sprite_label.setGeometry(QtCore.QRect(650, 120, 161, 151))
         font = QtGui.QFont()
         font.setFamily("Verdana")
         font.setPointSize(1)
