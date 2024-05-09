@@ -15,8 +15,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>968</width>
-    <height>928</height>
+    <width>1238</width>
+    <height>985</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1238</width>
+    <height>985</height>
    </size>
   </property>
   <property name="cursor">
