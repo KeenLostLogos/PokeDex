@@ -64,6 +64,10 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
     FONT = "Pokemon GB"
 
     def __init__(self) -> None:
+        """
+        Sets up the Pokedex class and initializes default values
+        :return: None
+        """
         super().__init__()
         self.setupUi(self)
         self.pokemonName: str = ""
@@ -76,6 +80,10 @@ class PokedexLogic(QMainWindow, Ui_MainWindow):
         self.configUI()
 
     def configUI(self) -> None:
+        """
+        Sets up certain features of the user interface and links the buttons to functions
+        :return: None
+        """
         self.find_entry_pushButton.clicked.connect(self.get_pokedex_entry)
         self.pokedex_id_entry.returnPressed.connect(self.get_pokedex_entry)
         self.pokemon_name_entry.returnPressed.connect(self.get_pokedex_entry)
